@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Link, useLocation } from "wouter";
 import { 
   Home, 
   Phone, 
@@ -23,7 +23,7 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, logoutMutation } = useAuth();
-  const [currentPage, setCurrentPage] = useState("dashboard");
+  const [location] = useLocation();
 
   if (!user) return null;
 
@@ -31,23 +31,23 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     switch (user.role) {
       case "CC Agent":
         return [
-          { id: "dashboard", icon: Home, label: "Dashboard" },
-          { id: "calls", icon: Phone, label: "Calls Section" },
-          { id: "leads", icon: Users, label: "Lead Section" },
-          { id: "reports", icon: BarChart3, label: "Report Section" },
+          { id: "/", icon: Home, label: "Dashboard" },
+          { id: "/calls", icon: Phone, label: "Calls Section" },
+          { id: "/leads", icon: Users, label: "Lead Section" },
+          { id: "/reports", icon: BarChart3, label: "Report Section" },
         ];
       case "CRO Agent":
         return [
-          { id: "dashboard", icon: Home, label: "Dashboard" },
-          { id: "received-leads", icon: Inbox, label: "Received Leads" },
+          { id: "/", icon: Home, label: "Dashboard" },
+          { id: "/received-leads", icon: Inbox, label: "Received Leads" },
         ];
       case "Super Admin":
         return [
-          { id: "dashboard", icon: Home, label: "Dashboard" },
-          { id: "lead-analysis", icon: TrendingUp, label: "Lead Analysis" },
-          { id: "report-analysis", icon: PieChart, label: "Report Analysis" },
-          { id: "number-upload", icon: Upload, label: "Number Upload" },
-          { id: "account-management", icon: UserCog, label: "Account Management" },
+          { id: "/", icon: Home, label: "Dashboard" },
+          { id: "/lead-analysis", icon: TrendingUp, label: "Lead Analysis" },
+          { id: "/report-analysis", icon: PieChart, label: "Report Analysis" },
+          { id: "/number-upload", icon: Upload, label: "Number Upload" },
+          { id: "/account-management", icon: UserCog, label: "Account Management" },
         ];
       default:
         return [];
@@ -98,15 +98,16 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="px-4 space-y-2">
               {getMenuItems().map((item) => {
                 const Icon = item.icon;
+                const isActive = location === item.id;
                 return (
-                  <button
+                  <Link
                     key={item.id}
-                    onClick={() => setCurrentPage(item.id)}
-                    className={`sidebar-item ${currentPage === item.id ? "active" : ""}`}
+                    href={item.id}
+                    className={`sidebar-item ${isActive ? "active" : ""}`}
                   >
                     <Icon className="h-5 w-5" />
                     <span>{item.label}</span>
-                  </button>
+                  </Link>
                 );
               })}
             </div>
@@ -115,8 +116,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           {/* Settings and Logout at bottom */}
           <div className="absolute bottom-6 left-0 right-0 px-4 space-y-2">
             <button
-              onClick={() => setCurrentPage("settings")}
-              className={`sidebar-item ${currentPage === "settings" ? "active" : ""}`}
+              onClick={() => {/* TODO: Implement settings */}}
+              className="sidebar-item"
             >
               <Settings className="h-5 w-5" />
               <span>Settings</span>

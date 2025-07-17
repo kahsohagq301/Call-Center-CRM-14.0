@@ -1,5 +1,4 @@
 import { useAuth } from "@/hooks/use-auth";
-import { DashboardLayout } from "@/components/layout/dashboard-layout";
 import CCAgentDashboard from "./cc-agent-dashboard";
 import CROAgentDashboard from "./cro-agent-dashboard";
 import SuperAdminDashboard from "./super-admin-dashboard";
@@ -22,9 +21,5 @@ export default function Dashboard() {
     }
   };
 
-  return (
-    <DashboardLayout>
-      {renderDashboard()}
-    </DashboardLayout>
-  );
+  return renderDashboard();
 }
