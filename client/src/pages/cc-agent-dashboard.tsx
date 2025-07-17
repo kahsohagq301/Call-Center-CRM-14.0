@@ -1,9 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone, Users, ArrowRightLeft, CheckCircle, XCircle } from "lucide-react";
-import { CallsTable } from "@/components/tables/calls-table";
-import { LeadsTable } from "@/components/tables/leads-table";
-import { ReportsTable } from "@/components/tables/reports-table";
 
 export default function CCAgentDashboard() {
   const { data: analytics } = useQuery({
@@ -144,11 +141,6 @@ export default function CCAgentDashboard() {
           </div>
         </CardContent>
       </Card>
-      
-      {/* Tables based on current page */}
-      <CallsTable />
-      <LeadsTable />
-      <ReportsTable />
     </div>
   );
 }
