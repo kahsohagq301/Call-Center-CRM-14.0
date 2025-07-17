@@ -25,7 +25,7 @@ export default function AuthPage() {
     email: "",
     password: "",
     confirmPassword: "",
-    role: "CC Agent" as "CC Agent" | "CRO Agent",
+    role: "CC Agent" as "CC Agent" | "CRO Agent" | "Super Admin",
     officialNumber: "",
   });
 
@@ -210,6 +210,7 @@ export default function AuthPage() {
                         <SelectContent>
                           <SelectItem value="CC Agent">CC Agent</SelectItem>
                           <SelectItem value="CRO Agent">CRO Agent</SelectItem>
+                          <SelectItem value="Super Admin">Super Admin</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>

@@ -34,7 +34,7 @@ const registerSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
   confirmPassword: z.string().min(6),
-  role: z.enum(["CC Agent", "CRO Agent"]),
+  role: z.enum(["CC Agent", "CRO Agent", "Super Admin"]),
   officialNumber: z.string().optional(),
   profilePicture: z.string().optional(),
 }).refine((data) => data.password === data.confirmPassword, {
