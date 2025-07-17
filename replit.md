@@ -4,6 +4,8 @@
 
 This is a comprehensive Call Center CRM System built with a modern full-stack architecture. The application is designed to manage call center operations, including user management, call tracking, lead management, reporting, and multi-role authentication. It features a React frontend with TypeScript, an Express.js backend, and PostgreSQL database with Drizzle ORM.
 
+**Status**: Successfully migrated from Replit Agent to Replit environment (July 17, 2025)
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
