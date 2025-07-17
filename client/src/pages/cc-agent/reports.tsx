@@ -21,7 +21,7 @@ export default function ReportsPage() {
   });
 
   const { data: reports = [], isLoading } = useQuery({
-    queryKey: ["/api/reports", user?.id],
+    queryKey: ["/api/reports"],
     enabled: !!user
   });
 

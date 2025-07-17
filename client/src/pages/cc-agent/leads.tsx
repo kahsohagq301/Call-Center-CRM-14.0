@@ -28,7 +28,7 @@ export default function LeadsPage() {
   });
 
   const { data: leads = [], isLoading } = useQuery({
-    queryKey: ["/api/leads", user?.id],
+    queryKey: ["/api/leads"],
     enabled: !!user
   });
 
