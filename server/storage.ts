@@ -141,7 +141,7 @@ export class DatabaseStorage implements IStorage {
       conditions.push(eq(calls.userId, userId));
     }
     
-    if (category) {
+    if (category && category !== "all") {
       conditions.push(eq(calls.category, category));
     }
     

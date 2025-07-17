@@ -56,9 +56,11 @@ export function CallsTable() {
     }
   };
 
-  const filteredCalls = calls?.filter((call: any) => 
-    call.customerNumber.includes(search)
-  ) || [];
+  const filteredCalls = calls?.filter((call: any) => {
+    const matchesSearch = call.customerNumber.includes(search);
+    const matchesCategory = categoryFilter === "all" || !categoryFilter || call.category === categoryFilter;
+    return matchesSearch && matchesCategory;
+  }) || [];
 
   return (
     <Card>
@@ -81,7 +83,7 @@ export function CallsTable() {
               <SelectValue placeholder="All Categories" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Categories</SelectItem>
+              <SelectItem value="all">All Categories</SelectItem>
               <SelectItem value="Switched Off">Switched Off</SelectItem>
               <SelectItem value="Busy">Busy</SelectItem>
               <SelectItem value="No Answer">No Answer</SelectItem>
