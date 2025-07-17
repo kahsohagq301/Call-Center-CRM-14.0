@@ -296,6 +296,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Number upload routes
+  app.get("/api/number-uploads", requireAuth, requireRole(["Super Admin"]), async (req, res) => {
+    try {
+      const uploads = await storage.getNumberUploads();
+      res.json(uploads);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch number uploads" });
+    }
+  });
+
   app.post("/api/number-uploads", requireAuth, requireRole(["Super Admin"]), upload.single('file'), async (req, res) => {
     try {
       const { assignedTo } = req.body;
